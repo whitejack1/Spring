@@ -1,4 +1,4 @@
-package Proxy.SpringBean;
+package Proxy.jdk;
 
 public interface UserServiseImp {
 	public void test1();
