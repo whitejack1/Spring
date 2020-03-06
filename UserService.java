@@ -1,4 +1,4 @@
-package Proxy.jdk;
+package Proxy.SpringBean;
 /*
  * 被代理的类(target)
  */
