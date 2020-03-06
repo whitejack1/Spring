@@ -1,4 +1,4 @@
-package Proxy.SpringBean;
+package Spring.aop.xml;
 /*
  * 被代理的类(target)
  */

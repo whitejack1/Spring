@@ -1,15 +1,13 @@
-package Proxy.SpringBean;
-
-
+package Spring.aop.xml;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring {
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "Proxy/SpringBean/applicationContext.xml" });
-		//因为是JDK动态代理，代理的是接口类型，返回的也应该是接口类型。
-		UserServiseImp proxyservice = (UserServiseImp) context.getBean("proxyServiceID");
+		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "Spring/aop/xml/applicationContext.xml" });
+		//Spring工厂最终返回的类就是原目标类id,即Spring是在原目标类的基础上进行切入添加的通知。
+		UserServiseImp proxyservice = (UserServiseImp) context.getBean("userserviceID");
 		proxyservice.test1();
 		proxyservice.test2();
 	}

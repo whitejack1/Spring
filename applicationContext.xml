@@ -13,16 +13,26 @@
    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
    http://www.springframework.org/schema/context      
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
- 
-	<!-- 创建目标类 -->
-	<bean id="userserviceID" class="Proxy.SpringBean.UserService"></bean>
+    <!-- 创建目标类 -->
+    <bean id="userserviceID" class="Spring.aop.xml.UserService"></bean>
     <!-- 创建切面类 -->
-    <bean id="myAspectID" class="Proxy.SpringBean.myAspect"></bean>
-    <!-- 创建代理类 -->
-    <bean id="proxyServiceID" class="org.springframework.aop.framework.ProxyFactoryBean">
-    <property name="interfaces" value="Proxy.SpringBean.UserServiseImp"></property>
-    <property name="target" ref="userserviceID"></property>
-    <property name="interceptorNames" value="myAspectID"></property>
-    </bean>
+ 	<bean id="myAspectID" class="Spring.aop.xml.MyAspect"></bean>
+ 	
+ 	<!-- aop的AspectJ编程
+ 		<aop:before method="myBefore" pointcut-ref="myPointcutID"/>前置通知类型代码
+ 		<aop:after-returning method="myAfterReturning" pointcut-ref="myPointcutID" returning = "ret"/>后置通知类型代码
+ 		<aop:around method="myAround" pointcut-ref="myPointcutID"/>环绕通知类型
+ 		<aop:after-throwing method="myThrowing" pointcut-ref="myPointcutID" throwing="e"/>抛出异常通知。
+ 		在切面类里的异常通知信息参数名有这里的throwing="e"决定。
+ 		<aop:after method="myAfter" pointcut-ref="myPointcutID"/>最终通知类型代码。
+ 	 -->
+	<aop:config>
+	<aop:aspect ref="myAspectID">
+	<aop:pointcut expression="execution(* Spring.aop.xml.UserService*.*(..))" id="myPointcutID"/>
+	<aop:after method="myAfter" pointcut-ref="myPointcutID"/>
+	
+	
+	</aop:aspect>
+	</aop:config>
 
 </beans>
